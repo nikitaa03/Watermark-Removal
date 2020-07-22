@@ -1,0 +1,27 @@
+import cv2
+import numpy as np  
+from matplotlib import pyplot as plt
+
+img=cv2.imread('C:\\Users\\Nikitha\\Desktop\\spyder\\img8.jpg',0)
+h,w=img.shape[:2]
+target=np.zeros((img.shape),dtype="uint8")
+
+plt.axis([0,256,0,18000])   
+plt.hist(img.ravel(),256,[0,256],label='')
+
+for i in range(0,h):
+    for j in range(0,w):
+        target[i][j]=img[i][j]
+        if target[i][j] in range(20,250):
+           target[i][j]=255
+        
+
+cv2.namedWindow('org',cv2.WINDOW_NORMAL)
+cv2.imshow('org',img)
+cv2.namedWindow('res',cv2.WINDOW_NORMAL)
+cv2.imshow('res',target)
+cv2.waitKey(0)
+        
+            
+    
+        
